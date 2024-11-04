@@ -1,0 +1,454 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:200i,300,400&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style type="text/css">
+      .lf-progress {
+        -webkit-appearance: none;
+        -moz-apperance: none;
+        width: 100%;
+        /* margin: 0 10px; */
+        height: 4px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      .lf-progress:focus {
+        outline: none;
+        border: none;
+      }
+      .lf-progress::-moz-range-track {
+        cursor: pointer;
+        background: none;
+        border: none;
+        outline: none;
+      }
+      .lf-progress::-webkit-slider-thumb {
+        -webkit-appearance: none !important;
+        height: 13px;
+        width: 13px;
+        border: 0;
+        border-radius: 50%;
+        background: #0fccce;
+        cursor: pointer;
+      }
+      .lf-progress::-moz-range-thumb {
+        -moz-appearance: none !important;
+        height: 13px;
+        width: 13px;
+        border: 0;
+        border-radius: 50%;
+        background: #0fccce;
+        cursor: pointer;
+      }
+      .lf-progress::-ms-track {
+        width: 100%;
+        height: 3px;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+      }
+      .lf-progress::-ms-fill-lower {
+        background: #ccc;
+        border-radius: 3px;
+      }
+      .lf-progress::-ms-fill-upper {
+        background: #ccc;
+        border-radius: 3px;
+      }
+      .lf-progress::-ms-thumb {
+        border: 0;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background: #0fccce;
+        cursor: pointer;
+      }
+      .lf-progress:focus::-ms-fill-lower {
+        background: #ccc;
+      }
+      .lf-progress:focus::-ms-fill-upper {
+        background: #ccc;
+      }
+      .lf-player-container :focus {
+        outline: 0;
+      }
+      .lf-popover {
+        position: relative;
+      }
+
+      .lf-popover-content {
+        display: inline-block;
+        position: absolute;
+        opacity: 1;
+        visibility: visible;
+        transform: translate(0, -10px);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        transition: all 0.3s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+      }
+
+      .lf-popover-content.hidden {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(0, 0px);
+      }
+
+      .lf-player-btn-container {
+        display: flex;
+        align-items: center;
+      }
+      .lf-player-btn {
+        cursor: pointer;
+        fill: #999;
+        width: 14px;
+      }
+
+      .lf-player-btn.active {
+        fill: #555;
+      }
+
+      .lf-popover {
+        position: relative;
+      }
+
+      .lf-popover-content {
+        display: inline-block;
+        position: absolute;
+        background-color: #ffffff;
+        opacity: 1;
+
+        transform: translate(0, -10px);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        transition: all 0.3s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+        padding: 10px;
+      }
+
+      .lf-popover-content.hidden {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(0, 0px);
+      }
+
+      .lf-arrow {
+        position: absolute;
+        z-index: -1;
+        content: "";
+        bottom: -9px;
+        border-style: solid;
+        border-width: 10px 10px 0px 10px;
+      }
+
+      .lf-left-align,
+      .lf-left-align .lfarrow {
+        left: 0;
+        right: unset;
+      }
+
+      .lf-right-align,
+      .lf-right-align .lf-arrow {
+        right: 0;
+        left: unset;
+      }
+
+      .lf-text-input {
+        border: 1px #ccc solid;
+        border-radius: 5px;
+        padding: 3px;
+        width: 60px;
+        margin: 0;
+      }
+
+      .lf-color-picker {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 90px;
+      }
+
+      .lf-color-selectors {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .lf-color-component {
+        display: flex;
+        flex-direction: row;
+        font-size: 12px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lf-color-component strong {
+        width: 40px;
+      }
+
+      .lf-color-component input[type="range"] {
+        margin: 0 0 0 10px;
+      }
+
+      .lf-color-component input[type="number"] {
+        width: 50px;
+        margin: 0 0 0 10px;
+      }
+
+      .lf-color-preview {
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 5px;
+      }
+
+      .lf-preview {
+        height: 60px;
+        width: 60px;
+      }
+
+      .lf-popover-snapshot {
+        width: 150px;
+      }
+      .lf-popover-snapshot h5 {
+        margin: 5px 0 10px 0;
+        font-size: 0.75rem;
+      }
+      .lf-popover-snapshot a {
+        display: block;
+        text-decoration: none;
+      }
+      .lf-popover-snapshot a:before {
+        content: "⥼";
+        margin-right: 5px;
+      }
+      .lf-popover-snapshot .lf-note {
+        display: block;
+        margin-top: 10px;
+        color: #999;
+      }
+      .lf-player-controls > div {
+        margin-right: 5px;
+        margin-left: 5px;
+      }
+      .lf-player-controls > div:first-child {
+        margin-left: 0px;
+      }
+      .lf-player-controls > div:last-child {
+        margin-right: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- START NAV -->
+
+    <nav id="navbar" class="nav">
+      <ul class="nav-list">
+        <li>
+          <a href="#welcome-section">About</a>
+        </li>
+        <li>
+          <a href="#projects">Work</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- END NAV -->
+
+    <!-- START WELCOME SECTION -->
+
+    <section id="welcome-section" class="welcome-section">
+      <h1>Hey I am Md. Rafsan Jani</h1>
+      <p style="text-align: center">
+        an Assistant Professor at Department of Computer Science and
+        Engineering, Jahangirnagar University
+      </p>
+    </section>
+
+    <!-- END WELCOME SECTION -->
+
+    <!-- START PROJECTS SECTION -->
+
+    <section id="projects" class="projects-section">
+      <h2 class="projects-section-header">These are some of my projects</h2>
+
+      <div class="projects-grid">
+        <a
+          href="https://codepen.io/freeCodeCamp/full/zNqgVx"
+          target="_blank"
+          class="project project-tile"
+        >
+          <img
+            class="project-image"
+            src="https://cdn.freecodecamp.org/testable-projects-fcc/images/tribute.jpg"
+            alt="project"
+          />
+          <p class="project-title">
+            <span class="code">&lt;</span>
+            Tribute Page
+            <span class="code">/&gt;</span>
+          </p>
+        </a>
+        <a
+          href="https://codepen.io/freeCodeCamp/full/qRZeGZ"
+          target="_blank"
+          class="project project-tile"
+        >
+          <img
+            class="project-image"
+            src="https://cdn.freecodecamp.org/testable-projects-fcc/images/random-quote-machine.png"
+            alt="project"
+          />
+          <p class="project-title">
+            <span class="code">&lt;</span>
+            Random Quote Machine
+            <span class="code">/&gt;</span>
+          </p>
+        </a>
+        <a
+          href="https://codepen.io/freeCodeCamp/full/wgGVVX"
+          target="_blank"
+          class="project project-tile"
+        >
+          <img
+            class="project-image"
+            src="https://cdn.freecodecamp.org/testable-projects-fcc/images/calc.png"
+            alt="project"
+          />
+          <p class="project-title">
+            <span class="code">&lt;</span>
+            JavaScript Calculator
+            <span class="code">/&gt;</span>
+          </p>
+        </a>
+        <a
+          href="https://codepen.io/freeCodeCamp/full/mVEJag"
+          target="_blank"
+          class="project project-tile"
+        >
+          <img
+            class="project-image"
+            src="https://cdn.freecodecamp.org/testable-projects-fcc/images/map.jpg"
+            alt="project"
+          />
+          <p class="project-title">
+            <span class="code">&lt;</span>
+            Map Data Across the Globe
+            <span class="code">/&gt;</span>
+          </p>
+        </a>
+        <a
+          href="https://codepen.io/freeCodeCamp/full/wGqEga"
+          target="_blank"
+          class="project project-tile"
+        >
+          <img
+            class="project-image"
+            src="https://cdn.freecodecamp.org/testable-projects-fcc/images/wiki.png"
+            alt="project"
+          />
+          <p class="project-title">
+            <span class="code">&lt;</span>
+            Wikipedia Viewer
+            <span class="code">/&gt;</span>
+          </p>
+        </a>
+        <a
+          href="https://codepen.io/freeCodeCamp/full/KzXQgy"
+          target="_blank"
+          class="project project-tile"
+        >
+          <img
+            class="project-image"
+            src="https://cdn.freecodecamp.org/testable-projects-fcc/images/tic-tac-toe.png"
+            alt="project"
+          />
+          <p class="project-title">
+            <span class="code">&lt;</span>
+            Tic Tac Toe Game
+            <span class="code">/&gt;</span>
+          </p>
+        </a>
+      </div>
+
+      <a
+        href="https://codepen.io/FreeCodeCamp/"
+        class="btn btn-show-all"
+        target="_blank"
+        >Show all<i class="fas fa-chevron-right"></i
+      ></a>
+    </section>
+
+    <!-- END PROJECTS SECTION -->
+
+    <!-- START CONTACT SECTION -->
+
+    <section id="contact" class="contact-section">
+      <div class="contact-section-header">
+        <h2>Let's work together...</h2>
+        <p>How do you take your coffee?</p>
+      </div>
+      <div class="contact-links">
+        <a
+          href="https://facebook.com/rafsanteto"
+          target="_blank"
+          class="btn contact-details"
+          ><i class="fab fa-facebook-square"></i> Facebook</a
+        >
+        <a
+          id="profile-link"
+          href="https://github.com/rafsanteto"
+          target="_blank"
+          class="btn contact-details"
+          ><i class="fab fa-github"></i> GitHub</a
+        >
+        <a
+          href="https://twitter.com/rafsanteto"
+          target="_blank"
+          class="btn contact-details"
+          ><i class="fab fa-twitter"></i> Twitter</a
+        >
+        <a href="mailto:rafsan@juniv.edu" class="btn contact-details"
+          ><i class="fas fa-at"></i> Send a mail</a
+        >
+        <a href="tel:+8801712596024" class="btn contact-details"
+          ><i class="fas fa-mobile-alt"></i> Call me</a
+        >
+      </div>
+    </section>
+
+    <!-- END CONTACT SECTION -->
+
+    <!-- START FOOTER SECTION -->
+
+    <footer>
+      <p>
+        **This is just a fake portfolio. All the projects and contact details
+        given are not real.
+      </p>
+      <p>
+        © Created for
+        <a href="https://www.freecodecamp.com/" target="_blank"
+          >freeCodeCamp <i class="fab fa-free-code-camp"></i
+        ></a>
+      </p>
+    </footer>
+
+    <!-- END FOOTER SECTION -->
+  </body>
+</html>
